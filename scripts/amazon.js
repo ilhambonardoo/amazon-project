@@ -40,6 +40,7 @@ products.forEach((product) => {
 
           <button class = "add-to-cart-button button-primary js-add-to-cart" data-product-id = "${product.id}" data-product-name = "${product.name}">Add to Cart</button>
         </div>`;
+  console.log(productsHTML);
 });
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
@@ -65,6 +66,14 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
       matchingItem.quantity += 1;
     }
 
+    let cartQuantity = 0;
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
+
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
+    console.log(cartQuantity);
     console.log(JSON.stringify(cart));
   });
 });
