@@ -1,3 +1,11 @@
+import { cart, updateCartQuantity } from "../data/cart.js";
+import { products } from "../data/products.js";
+import { formatCurrency } from "./utils/money.js";
+
+/**
+ * GENERATE HTML TO JAVASCRIPT
+ */
+
 let productsHTML = "";
 
 products.forEach((product) => {
@@ -14,7 +22,7 @@ products.forEach((product) => {
             <div class="product-rating-count link-primary">${product.rating.count}</div>
           </div>
 
-          <div class="product-price">$${(product.priceCents / 100).toFixed(2)}</div>
+          <div class="product-price">$${formatCurrency(product.priceCents)}</div>
 
           <div class="product-quantity-container">
             <select>
@@ -45,35 +53,34 @@ products.forEach((product) => {
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
+/**
+ * ADD TO CART
+ */
+
+function addProductId(productId, productName) {
+  let matchingItem;
+  cart.forEach((item) => {
+    if (productId === item.productId) {
+      matchingItem = item;
+    }
+  });
+  if (!matchingItem) {
+    cart.push({
+      productId: productId,
+      productName: productName,
+      quantity: 1,
+    });
+  } else {
+    matchingItem.quantity += 1;
+  }
+}
+
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
     const productName = button.dataset.productName;
 
-    let matchingItem;
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-    if (!matchingItem) {
-      cart.push({
-        productId: productId,
-        productName: productName,
-        quantity: 1,
-      });
-    } else {
-      matchingItem.quantity += 1;
-    }
-
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-
-    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-
-    console.log(cartQuantity);
-    console.log(JSON.stringify(cart));
+    addProductId(productId, productName);
+    updateCartQuantity();
   });
 });
