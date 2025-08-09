@@ -22,11 +22,16 @@ export function renderPaymentSummary() {
 
   const totalCents = totalBeforeTaxCents + TaxCents;
 
+  let checkItem = 0;
+  cart.forEach((items) => {
+    checkItem += items.quantity;
+  });
+
   // GENERATE THE HTML (VIEW)
   paymentSummaryHTML += `<div class="payment-summary-title">Order Summary</div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div > Items (<span class="js-checkout-Items">${checkItem}</span>)</div>
             <div class="payment-summary-money">${formatCurrency(productPriceCents)}</div>
           </div>
 

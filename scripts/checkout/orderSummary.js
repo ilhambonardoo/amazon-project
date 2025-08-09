@@ -4,6 +4,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOption.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderHeaderCheckout } from "./headerSummary.js";
 
 /**
  * GENERATE HTML TO JAVASCRIPT
@@ -81,7 +82,7 @@ export function renderOrderSummary() {
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.remove();
-
+      renderHeaderCheckout();
       renderPaymentSummary();
     });
   });
@@ -90,9 +91,11 @@ export function renderOrderSummary() {
   document.querySelectorAll(".js-delivery-option").forEach((inputElement) => {
     inputElement.addEventListener("click", () => {
       const { productId, deliveryOptionId } = inputElement.dataset;
+
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary(); // REGENERATE HTML MODEL -> VIEW
       renderPaymentSummary();
+      renderHeaderCheckout();
     });
   });
 }
