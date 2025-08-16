@@ -12,4 +12,8 @@ describe("test suite : formatCurrency", () => {
   it("Rounds up to nearst cent/membulatkan ke sen yang terdekat ", () => {
     expect(formatCurrency(2000.2)).toEqual("20.00");
   });
+
+  it("Memeriksa apakah nomer yang ada di priceCents itu negatif", () => {
+    expect(formatCurrency(-200)).toEqual("-2.00");
+  });
 });
