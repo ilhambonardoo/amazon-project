@@ -1,6 +1,5 @@
 import { addToCart, cart, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
-import { formatCurrency } from "./utils/money.js";
 
 /**
  * GENERATE HTML TO JAVASCRIPT
@@ -18,11 +17,11 @@ products.forEach((product) => {
           <div class="product-name limit-text-to-2-lines">${product.name}</div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars" src="images/ratings/rating-${product.rating.stars * 10}.png" />
+            <img class="product-rating-stars" src="${product.getUrlStars()}"/>
             <div class="product-rating-count link-primary">${product.rating.count}</div>
           </div>
 
-          <div class="product-price">$${formatCurrency(product.priceCents)}</div>
+          <div class="product-price">${product.getPrice()}</div>
 
           <div class="product-quantity-container">
             <select class="js-quantity-selector-${product.id}">

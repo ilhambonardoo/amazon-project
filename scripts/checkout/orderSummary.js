@@ -1,6 +1,5 @@
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
-import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOption.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
@@ -31,7 +30,7 @@ export function renderOrderSummary() {
         <img class="product-image" src="${matchingProduct.image}" />
         <div class="cart-item-details">
         <div class="product-name js-product-name-${matchingProduct.id}">${matchingProduct.name}</div>
-        <div class="product-price js-product-price-${matchingProduct.id}">$${formatCurrency(matchingProduct.priceCents)}</div>
+        <div class="product-price js-product-price-${matchingProduct.id}">${matchingProduct.getPrice()}</div>
         <div class="product-quantity js-product-quantity-${matchingProduct.id}">
             <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
             <span class="update-quantity-link link-primary js-update-link"> Update </span>
