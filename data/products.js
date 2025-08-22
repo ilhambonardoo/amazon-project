@@ -56,8 +56,33 @@ class Clothing extends Product {
   }
 }
 
-console.log(tshrit);
-console.log(tshrit.getPrice());
+/**
+ Inside a method, "this" points to the outer object
+
+ const object3 = 
+  method(){
+  console.log(this)
+  }
+ */
+
+/*
+  Di dalam fungsi this = undifined
+  function logThis(){
+    console.log(this)
+  }
+  tapi bisa diubah dengan memanggil call()
+  logThis.call("hello")
+*/
+
+/*
+  Arrow funciton itu tidak bisa mengubah value dari this
+
+  console.log(this)
+
+  [1, 2, 3].forEach(()=>{
+    console.log(this)
+    })
+*/
 
 export const products = [
   {
