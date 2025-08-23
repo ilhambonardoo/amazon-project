@@ -11,14 +11,14 @@ export function renderHeaderCheckout() {
     
         <div class="header-content">
           <div class="checkout-header-left-section">
-            <a href="amazon.html">
+            <a href="https://ilhambonardoo.github.io/amazon-project/">
               <img class="amazon-logo" src="images/amazon-logo.png" />
               <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png" />
             </a>
           </div>
 
           <div class="checkout-header-middle-section">
-            Checkout (<a class="return-to-home-link" href="amazon.html"><span>${checkItem}</span> items</a>)
+            Checkout (<a class="return-to-home-link" href="https://ilhambonardoo.github.io/amazon-project/checkout.html"><span>${checkItem}</span> items</a>)
           </div>
 
           <div class="checkout-header-right-section">
